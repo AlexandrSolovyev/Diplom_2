@@ -3,15 +3,15 @@ import requests
 
 from data.endpoint import Endpoint
 from data.ingredient import Ingredient
-from conftest import create_user
+from conftest import register_user
 
 
 @allure.suite("Получение заказов")
 class TestGetUserOrder:
 
     @allure.title("Получение доступных заказов авторизованного пользователя")
-    def test_get_order_user_with_auth(self, create_user):
-        token = {'Authorization': create_user[3]}
+    def test_get_order_user_with_auth(self, register_user):
+        token = {'Authorization': register_user[3]}
         requests_create_order = requests.post(f"{Endpoint.MAIN_URL}{Endpoint.ENDPOINT_MAKE_GET_ORDER}", headers=token,
                                               data=Ingredient.correct_ingredients_data)
         response_get_order = requests.get(f"{Endpoint.MAIN_URL}{Endpoint.ENDPOINT_MAKE_GET_ORDER}", headers=token)

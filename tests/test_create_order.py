@@ -1,7 +1,7 @@
 import allure
 import requests
 
-from conftest import create_user
+from conftest import register_user
 from data.endpoint import Endpoint
 from data.ingredient import Ingredient
 from data.headers import Headers
@@ -11,8 +11,8 @@ from data.headers import Headers
 class TestCreateOrder:
 
     @allure.title("Создание заказа авторизованным пользователем")
-    def test_create_order_with_auth(self, create_user):
-        token = {'Authorization': create_user[3]}
+    def test_create_order_with_auth(self, register_user):
+        token = {'Authorization': register_user[3]}
         r = requests.post(f"{Endpoint.MAIN_URL}{Endpoint.ENDPOINT_MAKE_GET_ORDER}",
                           headers=token,
                           data=Ingredient.correct_ingredients_data)

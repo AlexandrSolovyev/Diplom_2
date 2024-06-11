@@ -2,6 +2,7 @@ import allure
 import pytest
 import requests
 from data.endpoint import Endpoint
+from helpers import create_data_user
 from data.users import Users
 
 
@@ -10,7 +11,7 @@ class TestCreateUser:
     @allure.title('Создание уникального пользователя.')
     def test_create_user(self):
         response = requests.post(f'{Endpoint.MAIN_URL}{Endpoint.ENDPOINT_USER_CREATE}',
-                                 data=Users.create_data_user())
+                                 data=create_data_user())
         assert response.status_code == 200 and response.json()["success"] is True
 
     @allure.title('создать пользователя, который уже зарегистрирован.')

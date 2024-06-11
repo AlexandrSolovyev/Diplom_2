@@ -1,24 +1,6 @@
-import allure
-from faker import Faker
 
 
 class Users:
-    @staticmethod
-    @allure.step('формирую рандомные данные')
-    def create_data_user():
-        fake = Faker()
-
-        reg_data = {
-            "email": fake.email(),
-            "password": fake.password(),
-            "name": fake.name()
-        }
-        return reg_data
-
-    user_correct = {
-        'email': 'alex@ya.ru',
-        'password': '123QWEasd'
-    }
 
     user_double = {
         'email': 'alex@ya.ru',
